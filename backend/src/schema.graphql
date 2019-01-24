@@ -1,0 +1,10 @@
+type Game {
+  id: ID!
+  board: String
+  playerOne: User
+}
+
+type User {
+  id: ID!
+  wins: Int
+}

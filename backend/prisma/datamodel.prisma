@@ -1,0 +1,14 @@
+type Game {
+  id: ID! @unique
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  board: String
+  playerOne: User
+}
+
+type User {
+  id: ID! @unique
+  createdAt: DateTime!
+  wins: Int
+}
+
