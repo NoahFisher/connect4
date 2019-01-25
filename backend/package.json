@@ -1,0 +1,13 @@
+{
+  "dependencies": {
+    "graphql-yoga": "^1.17.0",
+    "prisma-client-lib": "^1.25.3"
+  },
+  "devDependencies": {
+    "eslint": "^5.12.1",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.15.0",
+    "eslint-plugin-jsx-a11y": "^6.1.2",
+    "eslint-plugin-react": "^7.12.4"
+  }
+}
