@@ -26,4 +26,8 @@ Pssst:
   Ask us any and all questions — there is no such thing as a “dumb” question
   Feel free to bounce ideas off us (e.g. architecture)
 
-Smile and have fun :)
+
+TODO: 
+  [ ] determine if game is complete
+  [ ] Backend Subscribers to new moves
+  [ ] Front end (to be expanded)

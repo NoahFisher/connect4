@@ -18,6 +18,8 @@ type Game {
   createdAt: DateTime!
   updatedAt: DateTime!
   board: String
+  isDone: Boolean
+  playerMove: User
   playerOne: User
   playerTwo: User
 }
@@ -30,6 +32,8 @@ type GameConnection {
 
 input GameCreateInput {
   board: String
+  isDone: Boolean
+  playerMove: UserCreateOneInput
   playerOne: UserCreateOneInput
   playerTwo: UserCreateOneInput
 }
@@ -48,6 +52,8 @@ enum GameOrderByInput {
   updatedAt_DESC
   board_ASC
   board_DESC
+  isDone_ASC
+  isDone_DESC
 }
 
 type GamePreviousValues {
@@ -55,6 +61,7 @@ type GamePreviousValues {
   createdAt: DateTime!
   updatedAt: DateTime!
   board: String
+  isDone: Boolean
 }
 
 type GameSubscriptionPayload {
@@ -77,12 +84,15 @@ input GameSubscriptionWhereInput {
 
 input GameUpdateInput {
   board: String
+  isDone: Boolean
+  playerMove: UserUpdateOneInput
   playerOne: UserUpdateOneInput
   playerTwo: UserUpdateOneInput
 }
 
 input GameUpdateManyMutationInput {
   board: String
+  isDone: Boolean
 }
 
 input GameWhereInput {
@@ -130,6 +140,9 @@ input GameWhereInput {
   board_not_starts_with: String
   board_ends_with: String
   board_not_ends_with: String
+  isDone: Boolean
+  isDone_not: Boolean
+  playerMove: UserWhereInput
   playerOne: UserWhereInput
   playerTwo: UserWhereInput
   AND: [GameWhereInput!]

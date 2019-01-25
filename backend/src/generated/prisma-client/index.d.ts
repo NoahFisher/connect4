@@ -146,7 +146,9 @@ export type GameOrderByInput =
   | "updatedAt_ASC"
   | "updatedAt_DESC"
   | "board_ASC"
-  | "board_DESC";
+  | "board_DESC"
+  | "isDone_ASC"
+  | "isDone_DESC";
 
 export type UserOrderByInput =
   | "id_ASC"
@@ -209,6 +211,9 @@ export interface GameWhereInput {
   board_not_starts_with?: String;
   board_ends_with?: String;
   board_not_ends_with?: String;
+  isDone?: Boolean;
+  isDone_not?: Boolean;
+  playerMove?: UserWhereInput;
   playerOne?: UserWhereInput;
   playerTwo?: UserWhereInput;
   AND?: GameWhereInput[] | GameWhereInput;
@@ -272,6 +277,8 @@ export type UserWhereUniqueInput = AtLeastOne<{
 
 export interface GameCreateInput {
   board?: String;
+  isDone?: Boolean;
+  playerMove?: UserCreateOneInput;
   playerOne?: UserCreateOneInput;
   playerTwo?: UserCreateOneInput;
 }
@@ -287,6 +294,8 @@ export interface UserCreateInput {
 
 export interface GameUpdateInput {
   board?: String;
+  isDone?: Boolean;
+  playerMove?: UserUpdateOneInput;
   playerOne?: UserUpdateOneInput;
   playerTwo?: UserUpdateOneInput;
 }
@@ -311,6 +320,7 @@ export interface UserUpsertNestedInput {
 
 export interface GameUpdateManyMutationInput {
   board?: String;
+  isDone?: Boolean;
 }
 
 export interface UserUpdateInput {
@@ -352,6 +362,7 @@ export interface Game {
   createdAt: DateTimeOutput;
   updatedAt: DateTimeOutput;
   board?: String;
+  isDone?: Boolean;
 }
 
 export interface GamePromise extends Promise<Game>, Fragmentable {
@@ -359,6 +370,8 @@ export interface GamePromise extends Promise<Game>, Fragmentable {
   createdAt: () => Promise<DateTimeOutput>;
   updatedAt: () => Promise<DateTimeOutput>;
   board: () => Promise<String>;
+  isDone: () => Promise<Boolean>;
+  playerMove: <T = UserPromise>() => T;
   playerOne: <T = UserPromise>() => T;
   playerTwo: <T = UserPromise>() => T;
 }
@@ -370,6 +383,8 @@ export interface GameSubscription
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   board: () => Promise<AsyncIterator<String>>;
+  isDone: () => Promise<AsyncIterator<Boolean>>;
+  playerMove: <T = UserSubscription>() => T;
   playerOne: <T = UserSubscription>() => T;
   playerTwo: <T = UserSubscription>() => T;
 }
@@ -574,6 +589,7 @@ export interface GamePreviousValues {
   createdAt: DateTimeOutput;
   updatedAt: DateTimeOutput;
   board?: String;
+  isDone?: Boolean;
 }
 
 export interface GamePreviousValuesPromise
@@ -583,6 +599,7 @@ export interface GamePreviousValuesPromise
   createdAt: () => Promise<DateTimeOutput>;
   updatedAt: () => Promise<DateTimeOutput>;
   board: () => Promise<String>;
+  isDone: () => Promise<Boolean>;
 }
 
 export interface GamePreviousValuesSubscription
@@ -592,6 +609,7 @@ export interface GamePreviousValuesSubscription
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   board: () => Promise<AsyncIterator<String>>;
+  isDone: () => Promise<AsyncIterator<Boolean>>;
 }
 
 export interface UserSubscriptionPayload {
@@ -666,14 +684,14 @@ The `String` scalar type represents textual data, represented as UTF-8 character
 export type String = string;
 
 /*
-The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. 
-*/
-export type Int = number;
-
-/*
 The `Boolean` scalar type represents `true` or `false`.
 */
 export type Boolean = boolean;
+
+/*
+The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. 
+*/
+export type Int = number;
 
 export type Long = string;
 

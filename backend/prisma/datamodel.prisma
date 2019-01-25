@@ -3,6 +3,8 @@ type Game {
   createdAt: DateTime!
   updatedAt: DateTime!
   board: String
+  isDone: Boolean @default(value: "false")
+  playerMove: User @relation(name: "PlayerMove")
   playerOne: User @relation(name: "PlayerOne")
   playerTwo: User @relation(name: "PlayerTwo")
 }

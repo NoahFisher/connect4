@@ -1,6 +1,8 @@
 type Game {
   id: ID!
   board: String
+  isDone: Boolean
+  playerMove: User
   playerOne: User
   playerTwo: User
 }
@@ -18,7 +20,8 @@ type Query {
 }
 
 type Mutation {
-  createUser: User!
   createGame(userId: ID!): Game!
+  createMove(nextUserIdsMove: ID!, gameId: ID!, board: String!): Game!
+  createUser: User!
   joinGame(userId: ID!, gameId: ID!): Game!
 }
