@@ -6,7 +6,6 @@ const Query = require('./resolvers/Query');
 // const Subscription = require('./resolvers/Subscription');
 const User = require('./resolvers/User');
 
-
 const resolvers = {
   Game,
   Mutation,

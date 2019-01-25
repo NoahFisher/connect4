@@ -3,12 +3,13 @@ type Game {
   createdAt: DateTime!
   updatedAt: DateTime!
   board: String
-  playerOne: User
+  playerOne: User @relation(name: "PlayerOne")
+  playerTwo: User @relation(name: "PlayerTwo")
 }
 
 type User {
   id: ID! @unique
+  username: String
   createdAt: DateTime!
-  wins: Int
+  updatedAt: DateTime!
 }
-

@@ -2,9 +2,23 @@ type Game {
   id: ID!
   board: String
   playerOne: User
+  playerTwo: User
 }
 
 type User {
   id: ID!
-  wins: Int
+  username: String
+}
+
+type Query {
+  info: String
+  game(id: ID): Game
+  users: [User!]!
+  games: [Game!]!
+}
+
+type Mutation {
+  createUser: User!
+  createGame(userId: ID!): Game!
+  joinGame(userId: ID!, gameId: ID!): Game!
 }

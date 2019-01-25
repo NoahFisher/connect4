@@ -151,10 +151,10 @@ export type GameOrderByInput =
 export type UserOrderByInput =
   | "id_ASC"
   | "id_DESC"
+  | "username_ASC"
+  | "username_DESC"
   | "createdAt_ASC"
   | "createdAt_DESC"
-  | "wins_ASC"
-  | "wins_DESC"
   | "updatedAt_ASC"
   | "updatedAt_DESC";
 
@@ -210,6 +210,7 @@ export interface GameWhereInput {
   board_ends_with?: String;
   board_not_ends_with?: String;
   playerOne?: UserWhereInput;
+  playerTwo?: UserWhereInput;
   AND?: GameWhereInput[] | GameWhereInput;
   OR?: GameWhereInput[] | GameWhereInput;
   NOT?: GameWhereInput[] | GameWhereInput;
@@ -230,6 +231,20 @@ export interface UserWhereInput {
   id_not_starts_with?: ID_Input;
   id_ends_with?: ID_Input;
   id_not_ends_with?: ID_Input;
+  username?: String;
+  username_not?: String;
+  username_in?: String[] | String;
+  username_not_in?: String[] | String;
+  username_lt?: String;
+  username_lte?: String;
+  username_gt?: String;
+  username_gte?: String;
+  username_contains?: String;
+  username_not_contains?: String;
+  username_starts_with?: String;
+  username_not_starts_with?: String;
+  username_ends_with?: String;
+  username_not_ends_with?: String;
   createdAt?: DateTimeInput;
   createdAt_not?: DateTimeInput;
   createdAt_in?: DateTimeInput[] | DateTimeInput;
@@ -238,14 +253,14 @@ export interface UserWhereInput {
   createdAt_lte?: DateTimeInput;
   createdAt_gt?: DateTimeInput;
   createdAt_gte?: DateTimeInput;
-  wins?: Int;
-  wins_not?: Int;
-  wins_in?: Int[] | Int;
-  wins_not_in?: Int[] | Int;
-  wins_lt?: Int;
-  wins_lte?: Int;
-  wins_gt?: Int;
-  wins_gte?: Int;
+  updatedAt?: DateTimeInput;
+  updatedAt_not?: DateTimeInput;
+  updatedAt_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_not_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_lt?: DateTimeInput;
+  updatedAt_lte?: DateTimeInput;
+  updatedAt_gt?: DateTimeInput;
+  updatedAt_gte?: DateTimeInput;
   AND?: UserWhereInput[] | UserWhereInput;
   OR?: UserWhereInput[] | UserWhereInput;
   NOT?: UserWhereInput[] | UserWhereInput;
@@ -258,6 +273,7 @@ export type UserWhereUniqueInput = AtLeastOne<{
 export interface GameCreateInput {
   board?: String;
   playerOne?: UserCreateOneInput;
+  playerTwo?: UserCreateOneInput;
 }
 
 export interface UserCreateOneInput {
@@ -266,12 +282,13 @@ export interface UserCreateOneInput {
 }
 
 export interface UserCreateInput {
-  wins?: Int;
+  username?: String;
 }
 
 export interface GameUpdateInput {
   board?: String;
   playerOne?: UserUpdateOneInput;
+  playerTwo?: UserUpdateOneInput;
 }
 
 export interface UserUpdateOneInput {
@@ -284,7 +301,7 @@ export interface UserUpdateOneInput {
 }
 
 export interface UserUpdateDataInput {
-  wins?: Int;
+  username?: String;
 }
 
 export interface UserUpsertNestedInput {
@@ -297,11 +314,11 @@ export interface GameUpdateManyMutationInput {
 }
 
 export interface UserUpdateInput {
-  wins?: Int;
+  username?: String;
 }
 
 export interface UserUpdateManyMutationInput {
-  wins?: Int;
+  username?: String;
 }
 
 export interface GameSubscriptionWhereInput {
@@ -343,6 +360,7 @@ export interface GamePromise extends Promise<Game>, Fragmentable {
   updatedAt: () => Promise<DateTimeOutput>;
   board: () => Promise<String>;
   playerOne: <T = UserPromise>() => T;
+  playerTwo: <T = UserPromise>() => T;
 }
 
 export interface GameSubscription
@@ -353,26 +371,30 @@ export interface GameSubscription
   updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   board: () => Promise<AsyncIterator<String>>;
   playerOne: <T = UserSubscription>() => T;
+  playerTwo: <T = UserSubscription>() => T;
 }
 
 export interface User {
   id: ID_Output;
+  username?: String;
   createdAt: DateTimeOutput;
-  wins?: Int;
+  updatedAt: DateTimeOutput;
 }
 
 export interface UserPromise extends Promise<User>, Fragmentable {
   id: () => Promise<ID_Output>;
+  username: () => Promise<String>;
   createdAt: () => Promise<DateTimeOutput>;
-  wins: () => Promise<Int>;
+  updatedAt: () => Promise<DateTimeOutput>;
 }
 
 export interface UserSubscription
   extends Promise<AsyncIterator<User>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
+  username: () => Promise<AsyncIterator<String>>;
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  wins: () => Promise<AsyncIterator<Int>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
 
 export interface GameConnection {
@@ -599,24 +621,27 @@ export interface UserSubscriptionPayloadSubscription
 
 export interface UserPreviousValues {
   id: ID_Output;
+  username?: String;
   createdAt: DateTimeOutput;
-  wins?: Int;
+  updatedAt: DateTimeOutput;
 }
 
 export interface UserPreviousValuesPromise
   extends Promise<UserPreviousValues>,
     Fragmentable {
   id: () => Promise<ID_Output>;
+  username: () => Promise<String>;
   createdAt: () => Promise<DateTimeOutput>;
-  wins: () => Promise<Int>;
+  updatedAt: () => Promise<DateTimeOutput>;
 }
 
 export interface UserPreviousValuesSubscription
   extends Promise<AsyncIterator<UserPreviousValues>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
+  username: () => Promise<AsyncIterator<String>>;
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  wins: () => Promise<AsyncIterator<Int>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
 
 /*

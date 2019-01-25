@@ -19,6 +19,7 @@ type Game {
   updatedAt: DateTime!
   board: String
   playerOne: User
+  playerTwo: User
 }
 
 type GameConnection {
@@ -30,6 +31,7 @@ type GameConnection {
 input GameCreateInput {
   board: String
   playerOne: UserCreateOneInput
+  playerTwo: UserCreateOneInput
 }
 
 type GameEdge {
@@ -76,6 +78,7 @@ input GameSubscriptionWhereInput {
 input GameUpdateInput {
   board: String
   playerOne: UserUpdateOneInput
+  playerTwo: UserUpdateOneInput
 }
 
 input GameUpdateManyMutationInput {
@@ -128,6 +131,7 @@ input GameWhereInput {
   board_ends_with: String
   board_not_ends_with: String
   playerOne: UserWhereInput
+  playerTwo: UserWhereInput
   AND: [GameWhereInput!]
   OR: [GameWhereInput!]
   NOT: [GameWhereInput!]
@@ -188,8 +192,9 @@ type Subscription {
 
 type User {
   id: ID!
+  username: String
   createdAt: DateTime!
-  wins: Int
+  updatedAt: DateTime!
 }
 
 type UserConnection {
@@ -199,7 +204,7 @@ type UserConnection {
 }
 
 input UserCreateInput {
-  wins: Int
+  username: String
 }
 
 input UserCreateOneInput {
@@ -215,18 +220,19 @@ type UserEdge {
 enum UserOrderByInput {
   id_ASC
   id_DESC
+  username_ASC
+  username_DESC
   createdAt_ASC
   createdAt_DESC
-  wins_ASC
-  wins_DESC
   updatedAt_ASC
   updatedAt_DESC
 }
 
 type UserPreviousValues {
   id: ID!
+  username: String
   createdAt: DateTime!
-  wins: Int
+  updatedAt: DateTime!
 }
 
 type UserSubscriptionPayload {
@@ -248,15 +254,15 @@ input UserSubscriptionWhereInput {
 }
 
 input UserUpdateDataInput {
-  wins: Int
+  username: String
 }
 
 input UserUpdateInput {
-  wins: Int
+  username: String
 }
 
 input UserUpdateManyMutationInput {
-  wins: Int
+  username: String
 }
 
 input UserUpdateOneInput {
@@ -288,6 +294,20 @@ input UserWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
+  username: String
+  username_not: String
+  username_in: [String!]
+  username_not_in: [String!]
+  username_lt: String
+  username_lte: String
+  username_gt: String
+  username_gte: String
+  username_contains: String
+  username_not_contains: String
+  username_starts_with: String
+  username_not_starts_with: String
+  username_ends_with: String
+  username_not_ends_with: String
   createdAt: DateTime
   createdAt_not: DateTime
   createdAt_in: [DateTime!]
@@ -296,14 +316,14 @@ input UserWhereInput {
   createdAt_lte: DateTime
   createdAt_gt: DateTime
   createdAt_gte: DateTime
-  wins: Int
-  wins_not: Int
-  wins_in: [Int!]
-  wins_not_in: [Int!]
-  wins_lt: Int
-  wins_lte: Int
-  wins_gt: Int
-  wins_gte: Int
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
   AND: [UserWhereInput!]
   OR: [UserWhereInput!]
   NOT: [UserWhereInput!]
